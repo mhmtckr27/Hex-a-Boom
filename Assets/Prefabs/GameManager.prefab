@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2929477784738238193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2929477784738238194}
+  - component: {fileID: 2929477784738238195}
+  - component: {fileID: 2929477784738238192}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2929477784738238194
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2929477784738238193}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2929477784738238195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2929477784738238193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a57ebc2e55d96004e9b00fa55d878e2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scenesData:
+  - buttonType: 0
+    sceneName: Level_1
+  - buttonType: 1
+    sceneName: Settings
+  - buttonType: 2
+    sceneName: MainMenu
+  - buttonType: 3
+    sceneName: Credits
+--- !u!114 &2929477784738238192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2929477784738238193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7792e2758ddb4b4b91ff57a370afc44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playSceneName: Level_1
+  gridColumnsPrefab: {fileID: 1857907501143815895, guid: 3cd935519a94da14e8eede0779b543f4, type: 3}
+  hexagonContainerColumnPrefab: {fileID: 3988046699331886765, guid: 7319f6a531777c8429d5651ced576148, type: 3}
+  hexagonPrefab: {fileID: 8641105889789550599, guid: a8567e201a3438047bcca4c1237d54aa, type: 3}
+  rotatingHexagonsParentPrefab: {fileID: 4379676628911831247, guid: 7338f29cdf9a48c47b55e03b54eb9f35, type: 3}
+  explodeParticlePrefab: {fileID: 1092360985242096314, guid: 824939abc5c02524f95e00f4947a1cea, type: 3}
+  gridSizeX: 8
+  gridSizeY: 9
+  gridOffsetFromEdges: 50
+  scoreIncrementPerBlockExploded: 5
+  hexagonColors:
+  - {r: 1, g: 1, b: 0.4009434, a: 1}
+  - {r: 0.514151, g: 1, b: 0.514151, a: 1}
+  - {r: 1, g: 0.41037738, b: 0.41037738, a: 1}
+  - {r: 0.33490568, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0.65131336, b: 0.3160377, a: 1}
+  canvas: {fileID: 0}
+  hexWidth: 0
+  hexHeight: 0
+  selectedHexagon: {fileID: 0}
+  selectedTripleIndex: 0
+  isInputEnabled: 0
+  onScoreChanged:
+    m_PersistentCalls:
+      m_Calls: []
