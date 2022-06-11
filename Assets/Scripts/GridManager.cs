@@ -69,6 +69,8 @@ public class GridManager : MonoBehaviour
 
     public void Init()
     {
+        //gridSizeX++;
+        //gridSizeY++;
         rotatingHexagonsParent = Instantiate(rotatingHexagonsParentPrefab, canvas.transform).GetComponent<RotatingHexagonsParent>();
 
         CalculateHexagonWidth();
@@ -99,7 +101,7 @@ public class GridManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.LogError(score);
+//        Debug.LogError(score);
     }
 
     private void Rotate(RotateType rotateType)
@@ -123,6 +125,7 @@ public class GridManager : MonoBehaviour
 
         for (int j = 0; j < 3; j++)
         {
+            //Debug.LogError("ASDJASFJDSJGDSJGSDJGDSGJGSD");
             for (int i = 0; i < 10; i++)
             {
                 yield return new WaitForSeconds(0.05f);
@@ -131,12 +134,23 @@ public class GridManager : MonoBehaviour
 
             for (int i = 0; i < 3; i++)
             {
+                /*
                 int temp = rotateType == RotateType.Right ? (i - j - 1) : (i + j + 1);
                 temp += temp < 0 ? 3 : 0;
                 temp %= 3;
+                */
 
-                selectedHexagon.neighbourTriples[selectedTripleIndex][i].colorProp = rotatingHexagonsParent.transform.GetChild(temp).GetComponent<Hexagon>().colorProp;
+                foreach (var hexagon in rotatingHexagonsParent.transform.GetComponentsInChildren<Hexagon>())
+                {
+                    if (Vector2.Distance(selectedHexagon.neighbourTriples[selectedTripleIndex][i].transform.position,
+                            hexagon.transform.position) < 0.05f)
+                    {
+                        selectedHexagon.neighbourTriples[selectedTripleIndex][i].colorProp = hexagon.colorProp;
+                    }
+                }
+                
             }
+            //Time.timeScale = 0;
 
             explodeExist = DoesExplodeExist();
 
@@ -420,6 +434,7 @@ public class GridManager : MonoBehaviour
     {
         allTriples = GetAllTriples();
 
+
         /*GameObject dummy = new GameObject("ASDASD");
 
         foreach (KeyValuePair<List<Hexagon>, bool> keyValuePair in allTriples)
@@ -448,6 +463,9 @@ public class GridManager : MonoBehaviour
             allTriples[allTriples.Keys.ElementAt(i)] = ShouldMarkAsExplode(allTriples.Keys.ElementAt(i));
             if (allTriples[allTriples.Keys.ElementAt(i)])
             {
+               // Debug.LogError(allTriples.Keys.ElementAt(i)[0].colorProp);
+                //Debug.LogError(allTriples.Keys.ElementAt(i)[1].colorProp);
+               // Debug.LogError(allTriples.Keys.ElementAt(i)[2].colorProp);
                 break;
             }
         }

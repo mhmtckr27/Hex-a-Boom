@@ -11,7 +11,7 @@ public class InputManager : MonoBehaviour
     public bool detectSwipeOnlyAfterRelease = false;
 
     public float swipeThreshold = 20f;
-
+    public bool isControlsReversed;
     private static InputManager instance;
     public static InputManager Instance
     {
@@ -32,6 +32,8 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyUp(KeyCode.Space))
+            Time.timeScale = 1;
         if(isInputEnabled == false)
         {
             return;

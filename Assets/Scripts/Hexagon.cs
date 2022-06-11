@@ -35,10 +35,10 @@ public class Hexagon : MonoBehaviour
         hexagonImage = GetComponent<Image>();
     }
 
-    public void Init(Vector2Int coordinates, Color previousHexagonColor)
+    public void Init(Vector2Int coordinates, Color previousHexagonColor, bool forceBlackColor = false)
     {
         this.coordinates = coordinates;
-        colorProp = GetRandomColorExcept(previousHexagonColor);
+        colorProp = forceBlackColor ? Color.black : GetRandomColorExcept(previousHexagonColor);
     }
 
     //pretty messy TODO: simplify
@@ -148,13 +148,13 @@ public class Hexagon : MonoBehaviour
 
                     temp.Add(this);
                     temp.Add(GridManager.Instance.GetHexagon(coordinates.x - 1, coordinates.y));
-                    temp.Add(GridManager.Instance.GetHexagon(coordinates.x - 1, coordinates.y - 1));
+                    temp.Add(GridManager.Instance.GetHexagon(coordinates.x - 1, coordinates.y + 1));
                     neighbourTriples.Add(temp);
 
                     temp = new List<Hexagon>();
 
                     temp.Add(this);
-                    temp.Add(GridManager.Instance.GetHexagon(coordinates.x - 1, coordinates.y - 1));
+                    temp.Add(GridManager.Instance.GetHexagon(coordinates.x - 1, coordinates.y + 1));
                     temp.Add(GridManager.Instance.GetHexagon(coordinates.x, coordinates.y + 1));
                     neighbourTriples.Add(temp);
                 }
@@ -443,10 +443,21 @@ public class Hexagon : MonoBehaviour
             return;
         }
         GridManager.Instance.SelectHexagon(this, GridManager.Instance.selectedTripleIndex + 1);
+/*
+        foreach (var neighbourTriple in neighbourTriples)
+        {
+            foreach(Hexagon hexagon in neighbourTriple)
+            {
+                hexagon.ToggleSelectedOverlayVisibility(true);
+            }
+        }
+        */
+       
         foreach(Hexagon hexagon in neighbourTriples[GridManager.Instance.selectedTripleIndex])
         {
             hexagon.ToggleSelectedOverlayVisibility(true);
         }
+        
     }
 
     public void SelectHexagon(int selectedTripleIndex)

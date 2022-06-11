@@ -15,7 +15,10 @@ public class HexagonContainerColumn : MonoBehaviour
         for (int i = 0; i < GridManager.Instance.gridSizeY; i++)
         {
             hexagons.Add(Instantiate(GridManager.Instance.hexagonPrefab, transform).GetComponent<Hexagon>());
-            hexagons[i].Init(new Vector2Int(columnIndex, i), (i == 0 ? Color.black : hexagons[i - 1].colorProp));
+            bool shouldBeBlack = i == 0 || i == GridManager.Instance.gridSizeY - 1 || columnIndex == 0 ||
+                                 columnIndex == GridManager.Instance.gridSizeX - 1;
+            shouldBeBlack = false;
+            hexagons[i].Init(new Vector2Int(columnIndex, i), (i == 0 ? Color.black : hexagons[i - 1].colorProp), shouldBeBlack);
         }
 
         return hexagons;
